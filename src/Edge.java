@@ -5,11 +5,9 @@ public class Edge implements Comparable<Edge> {
 	private Node node1;
 	private Node node2;
 	private int distance; 
-	private int used;
 	
 	//constructor
 	public Edge(int aDistance, Node firstNode, Node secondNode) {
-		used = 0;
 		distance = aDistance;
 		node1 = firstNode;
 		node2 = secondNode;
@@ -17,17 +15,9 @@ public class Edge implements Comparable<Edge> {
 	}
 
 	@Override
-	public int compareTo(Edge arg0) {
+	public int compareTo(Edge anotherEdge) {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	public boolean isFree() {
-		return used == 0;
-	}
-	
-	public void used() {
-		used = 1;
+		return distance - anotherEdge.distance;
 	}
 	
 	public int getDistance() {
