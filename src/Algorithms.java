@@ -10,6 +10,9 @@ public class Algorithms {
 	
 	// constructor
 	public Algorithms() {
+		MapReader mapReader = new MapReader();
+		map = mapReader.getMap();
+		
 		this.sortEdges();
 	}
 	

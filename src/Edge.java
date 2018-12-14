@@ -8,8 +8,12 @@ public class Edge implements Comparable<Edge> {
 	private int used;
 	
 	//constructor
-	public Edge(int aDistance) {
+	public Edge(int aDistance, Node firstNode, Node secondNode) {
 		used = 0;
+		distance = aDistance;
+		node1 = firstNode;
+		node2 = secondNode;
+		
 	}
 
 	@Override
@@ -24,6 +28,10 @@ public class Edge implements Comparable<Edge> {
 	
 	public void used() {
 		used = 1;
+	}
+	
+	public int getDistance() {
+		return distance;
 	}
 	
 	public Node getNode1() {

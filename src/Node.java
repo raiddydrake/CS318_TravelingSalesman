@@ -10,5 +10,9 @@ public class Node {
 		int degree = 0;
 		name = aName;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
 }
