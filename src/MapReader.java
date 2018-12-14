@@ -4,8 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+
 
 public class MapReader {
 	// instance variables
@@ -16,7 +15,7 @@ public class MapReader {
     
     // constructor
     public MapReader() {
-    	fileName = "resources/Map5.csv";
+    	fileName = "resources/Map1.csv";
     	nodes = new ArrayList<Node>();
     	edges = new ArrayList<Edge>();
     	

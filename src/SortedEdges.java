@@ -13,26 +13,20 @@ public class SortedEdges {
 		edges = reader.getEdges();
 	}
 	
+	// methods
 	public String[] runAlgorithm(String startingName) {
 		Node currentNode = null;
-		Node startingNode = null;
 		for (int index = 0; index < nodes.size(); index++) {
 			if (nodes.get(index).getName().equals(startingName)) {
 				currentNode = nodes.get(index);
-				startingNode = nodes.get(index);
 			}
 		}
 		ArrayList<Edge> sortEdges = runAlgorithm();
 		String path = currentNode.getName();
 		int distance = 0;
 		int sortedNodes = 1;
-		/*for (int index = 0; index < sortEdges.size(); index++) {
-			System.out.println(sortEdges.get(index).getDistance() + ", " + sortEdges.get(index).getNode1().getName() + ", " +
-					sortEdges.get(index).getNode2().getName());
-		}*/
 		while (sortedNodes <= nodes.size()) {
 			for (int index = 0; index < sortEdges.size(); index++) {
-				//System.out.println(sortedNodes);
 				if (sortEdges.get(index).getNode1() == currentNode) {
 					sortedNodes++;
 					distance = distance + sortEdges.get(index).getDistance();
@@ -88,16 +82,17 @@ public class SortedEdges {
 			Node baseNode = usedEdges.get(index).getNode1();
 			Node currentNode = usedEdges.get(index).getNode2();
 			adjacentEdges.add(usedEdges.get(index));
-			
 			for (int ind = 0; ind < usedEdges.size(); ind++) {
 				if(!adjacentEdges.contains(usedEdges.get(ind))) {
 					if (usedEdges.get(ind).getNode1() == currentNode) {
 						adjacentEdges.add(usedEdges.get(ind));
 						currentNode = usedEdges.get(ind).getNode2();
+						ind = 0;
 					}
 					if (usedEdges.get(ind).getNode2() == currentNode) {
 						adjacentEdges.add(usedEdges.get(ind));
 						currentNode = usedEdges.get(ind).getNode1();
+						ind = 0;
 					}
 				}
 				if (currentNode.getDegree() < 2) {

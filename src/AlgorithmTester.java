@@ -4,17 +4,17 @@ import java.util.ArrayList;
 public class AlgorithmTester {
 
 	public static void main(String[] args) {
-		MapReader mapReader = new MapReader();
 		
-		ArrayList<Edge> edges = mapReader.getEdges();
-		ArrayList<Node> nodes = mapReader.getNodes();
 		
+		// create new algorithm objects
 		NearestNeighbor NN = new NearestNeighbor();
 		SortedEdges SE = new SortedEdges();
 		
-		String NNdata[] = NN.runAlgorithm("Canton");
-		String SEdata[] = SE.runAlgorithm("Canton");
+		// run each of the algorithm methods
+		String NNdata[] = NN.runAlgorithm("Dallas");
+		String SEdata[] = SE.runAlgorithm("Dallas");
 		
+		// print data received by the algorithm in an easily readable way 
 		System.out.println("Nearest Neighbor:");
 		System.out.println(NNdata[0]);
 		System.out.println("Total Distance = " + NNdata[1]);
@@ -25,8 +25,13 @@ public class AlgorithmTester {
 		System.out.println(SEdata[0]);
 		System.out.println("Total Distance = " + SEdata[1]);
 		
+		/*
+		MapReader mapReader = new MapReader();
 		
-		/*for (int index = 0; index < nodes.size(); index++) {
+		ArrayList<Edge> edges = mapReader.getEdges();
+		ArrayList<Node> nodes = mapReader.getNodes();
+		
+		for (int index = 0; index < nodes.size(); index++) {
 			System.out.println(nodes.get(index).getName());
 			for (int ind = 0; ind < nodes.size() - 1; ind++) {
 				System.out.println("-- " + nodes.get(index).getConnectedEdge(ind).getDistance() + "," + 
@@ -38,7 +43,8 @@ public class AlgorithmTester {
 		for (int index = 0; index < edges.size(); index++) {
 			System.out.println(edges.get(index).getDistance() + ", " + edges.get(index).getNode1().getName() + ", " + 
 					edges.get(index).getNode2().getName());
-		}*/
+		}
+		*/
 
 	}
 
