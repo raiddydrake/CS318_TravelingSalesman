@@ -11,8 +11,8 @@ public class AlgorithmTester {
 		SortedEdges SE = new SortedEdges();
 		
 		// run each of the algorithm methods
-		String NNdata[] = NN.runAlgorithm("Dallas");
-		String SEdata[] = SE.runAlgorithm("Dallas");
+		String NNdata[] = NN.runAlgorithm("B");
+		String SEdata[] = SE.runAlgorithm("B");
 		
 		// print data received by the algorithm in an easily readable way 
 		System.out.println("Nearest Neighbor:");
@@ -25,6 +25,8 @@ public class AlgorithmTester {
 		System.out.println(SEdata[0]);
 		System.out.println("Total Distance = " + SEdata[1]);
 		
+		
+		// unnecessary code for printing all nodes and edges (to check if MapReader is working properly)
 		/*
 		MapReader mapReader = new MapReader();
 		
@@ -38,11 +40,6 @@ public class AlgorithmTester {
 						nodes.get(index).getConnectedEdge(ind).getNode1().getName() + "," + 
 						nodes.get(index).getConnectedEdge(ind).getNode2().getName());
 			}
-		}
-		
-		for (int index = 0; index < edges.size(); index++) {
-			System.out.println(edges.get(index).getDistance() + ", " + edges.get(index).getNode1().getName() + ", " + 
-					edges.get(index).getNode2().getName());
 		}
 		*/
 
