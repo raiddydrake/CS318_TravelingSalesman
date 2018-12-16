@@ -22,7 +22,7 @@ public class MapReader {
     // constructor
     public MapReader() {
     	// ENTER THE NAME OF THE FILE WITH THE DISTANCE TABLE HERE
-    	fileName = "resources/MaggieFionaMap.csv";
+    	fileName = "resources/JoshTreyMap.csv";
     	
     	// initialize nodes and edges
     	nodes = new ArrayList<Node>();

@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  * Sorted Edges Algorithm as a class definition
@@ -31,9 +35,19 @@ public class SortedEdges {
 	 * @param startingName, the name of the node that you would like shown first on the path
 	 * @return an array of string objects containing the path and total distance
 	 */
+	@SuppressWarnings("unchecked")
 	public String[] runAlgorithm(String startingName) {
 		// create a currentNode object that is initialized as null
 		Node currentNode = null;
+		// create JSON objects and arrays to hold information, as well as initialize starting node 
+		int currentIndex = 0;
+		JSONObject obj = new JSONObject();
+		JSONArray nodesjson = new JSONArray();
+		JSONArray linksjson = new JSONArray();
+		JSONObject firstNode = new JSONObject(); 
+		firstNode.put("name", startingName);
+		firstNode.put("group", 1);
+		nodesjson.add(firstNode);
 		// create a loop that will search for the node with the given name
 		// and will make that node the current node when it is found
 		for (int index = 0; index < nodes.size(); index++) {
@@ -58,23 +72,58 @@ public class SortedEdges {
 				// make the other connected node the currentNode, remove this edge from the list so it isn't used again,
 				// add the current Node's name to the path, and break the inner loop
 				if (sortEdges.get(index).getNode1() == currentNode) {
+					JSONObject aLink = new JSONObject();
+					aLink.put("source", currentIndex);
 					sortedNodes++;
 					distance = distance + sortEdges.get(index).getDistance();
 					currentNode = sortEdges.get(index).getNode2();
+					currentIndex++;
+					aLink.put("target", currentIndex);
+					aLink.put("value", 1);
+					linksjson.add(aLink);
+					JSONObject aNode = new JSONObject();
+					aNode.put("name", currentNode.getName());
+					aNode.put("group", 1);
+					nodesjson.add(aNode);
 					sortEdges.remove(sortEdges.get(index));
 					path = path + " -> " + currentNode.getName();
 					break;
 				}
 				if (sortEdges.get(index).getNode2() == currentNode) {
+					JSONObject aLink = new JSONObject();
+					aLink.put("source", currentIndex);
 					sortedNodes++;
 					distance = distance + sortEdges.get(index).getDistance();
 					currentNode = sortEdges.get(index).getNode1();
+					currentIndex++;
+					aLink.put("target", currentIndex);
+					aLink.put("value", 1);
+					linksjson.add(aLink);
+					JSONObject aNode = new JSONObject();
+					aNode.put("name", currentNode.getName());
+					aNode.put("group", 1);
+					nodesjson.add(aNode);
 					sortEdges.remove(sortEdges.get(index));
 					path = path + " -> " + currentNode.getName();
 					break;
-				}
+				} /* else {
+					JSONObject aLink = new JSONObject();
+					aLink.put("source", currentIndex);
+					aLink.put("target", currentIndex + 1);
+					aLink.put("value", 0);
+					linksjson.add(aLink);
+				}*/
 			}
 			
+		}
+		// finalize the json objects and write to file
+		obj.put("nodes", nodesjson);
+		obj.put("links", linksjson);
+		try (FileWriter file = new FileWriter("resources/se.json")){
+			file.write(obj.toJSONString());
+			System.out.println("SE JSON file written.");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		// create an array of string objects that will hold the path and distance
 		String data[] = new String[2];

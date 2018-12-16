@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 public class AlgorithmTester {
 
 	public static void main(String[] args) {
@@ -11,8 +8,8 @@ public class AlgorithmTester {
 		SortedEdges SE = new SortedEdges();
 		
 		// run each of the algorithm methods
-		String NNdata[] = NN.runAlgorithm("B");
-		String SEdata[] = SE.runAlgorithm("B");
+		String NNdata[] = NN.runAlgorithm("Reds");
+		String SEdata[] = SE.runAlgorithm("Reds");
 		
 		// print data received by the algorithm in an easily readable way 
 		System.out.println("Nearest Neighbor:");
