@@ -79,7 +79,7 @@ public class SortedEdges {
 					currentNode = sortEdges.get(index).getNode2();
 					currentIndex++;
 					aLink.put("target", currentIndex);
-					aLink.put("value", 1);
+					aLink.put("weight", 1);
 					linksjson.add(aLink);
 					JSONObject aNode = new JSONObject();
 					aNode.put("name", currentNode.getName());
@@ -97,7 +97,7 @@ public class SortedEdges {
 					currentNode = sortEdges.get(index).getNode1();
 					currentIndex++;
 					aLink.put("target", currentIndex);
-					aLink.put("value", 1);
+					aLink.put("weight", 1);
 					linksjson.add(aLink);
 					JSONObject aNode = new JSONObject();
 					aNode.put("name", currentNode.getName());
@@ -110,13 +110,20 @@ public class SortedEdges {
 					JSONObject aLink = new JSONObject();
 					aLink.put("source", currentIndex);
 					aLink.put("target", currentIndex + 1);
-					aLink.put("value", 0);
+					aLink.put("weight", 0);
 					linksjson.add(aLink);
 				}*/
 			}
 			
 		}
 		// finalize the json objects and write to file
+		currentIndex--;
+		linksjson.remove(currentIndex);
+		JSONObject aLink = new JSONObject();
+		aLink.put("source", currentIndex);
+		aLink.put("weight", 1);
+		aLink.put("target", 0);
+		linksjson.add(aLink);
 		obj.put("nodes", nodesjson);
 		obj.put("links", linksjson);
 		try (FileWriter file = new FileWriter("resources/se.json")){
@@ -142,7 +149,7 @@ public class SortedEdges {
 	private ArrayList<Edge> runAlgorithm(){
 		// create a new empty list of edges
 		ArrayList<Edge> usedEdges = new ArrayList<Edge>();
-		// create an index variable to keep track of which value in the edges list is being observed
+		// create an index variable to keep track of which weight in the edges list is being observed
 		int index = 0;
 		// create a loop that will check every edge and add it to the usedEdges list if it isn't attached to a node of
 		// degree 2 or more

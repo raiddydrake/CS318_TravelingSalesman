@@ -22,7 +22,7 @@ public class MapReader {
     // constructor
     public MapReader() {
     	// ENTER THE NAME OF THE FILE WITH THE DISTANCE TABLE HERE
-    	fileName = "resources/JoshTreyMap.csv";
+    	fileName = "resources/MaggieFionaMap.csv";
     	
     	// initialize nodes and edges
     	nodes = new ArrayList<Node>();
@@ -53,7 +53,9 @@ public class MapReader {
                 	// for each distance value, create a new edge object with that distance and 
                 	// connected nodes based on the row and column it's in
                 	for (int index = 1; index < data.length; index++) {
-                		if (!data[index].equals("")) {
+                		if (data[index].equals("")) {
+                			// break;
+                		} else {
 	                		edges.add(new Edge(Integer.parseInt(data[index]), nodes.get(row-1), nodes.get(index-1)));
                 		}
                 	}
